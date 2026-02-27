@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Display</title>
+    <title>Display Slideshow</title>
     <style>
         html, body {
             margin: 0;
@@ -11,14 +11,87 @@
             overflow: hidden;
             background: black;
         }
+        .slideshow-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .mySlides {
+            display: none; /* Hidden by default */
+            width: 100%;
+            height: 100%;
+        }
         img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: contain; /* Keeps image aspect ratio */
         }
+
+        /* Animation for smooth transition */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+
+        /* Styling buttons */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            cursor: pointer;
+            font-size: 40px;
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            text-decoration: none;
+            user-select: none;
+            transition: 0.3s;
+        }
+        .prev:hover, .next:hover { background: rgba(0,0,0,0.8); }
+        .next { right: 10px; }
+        .prev { left: 10px; }
     </style>
 </head>
 <body>
-    <img src="SCTT_new.png" alt="">
+
+<div class="slideshow-container">
+    <div class="mySlides fade"><img src="SCTT_new.png" alt="Image 1"></div>
+    <div class="mySlides fade"><img src="Nova Sela CI SDŽ_1.jpg" alt="Image 2"></div>
+    <div class="mySlides fade"><img src="Nova Sela CI SDŽ_2.jpg" alt="Image 3"></div>
+    <div class="mySlides fade"><img src="Nova Sela CI SDŽ_3.jpg" alt="Image 4"></div>
+    <div class="mySlides fade"><img src="Nova Sela CI SDŽ_4.jpg" alt="Image 5"></div>
+    <div class="mySlides fade"><img src="Nova Sela CI SDŽ_5.jpg" alt="Image 6"></div>
+    <div class="mySlides fade"><img src="Nova Sela CI SDŽ_6.jpg" alt="Image 7"></div>
+    <div class="mySlides fade"><img src="Nova Sela CI SDŽ_7.jpg" alt="Image 8"></div>
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slides[slideIndex-1].style.display = "block";  
+    }
+</script>
+
 </body>
 </html>
